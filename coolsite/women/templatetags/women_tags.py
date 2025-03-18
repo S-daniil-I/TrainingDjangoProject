@@ -3,10 +3,6 @@ from women.models import *
 
 register = template.Library()
 
-# @register.simple_tag()
-# def get_categories():
-#     return Category.objects.all()
-
 menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Добавить статью", 'url_name': 'add_page'},
         {'title': "Обратная связь", 'url_name': 'contact'},
