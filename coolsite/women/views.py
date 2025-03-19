@@ -30,14 +30,15 @@ def show_post(request, post_slug):
                'cat_selected': post.cat_id,
                }
     return render(request,'women/post.html',context=context)
-def show_category(request, cat_id):
-    posts = Women.objects.filter(cat_id=cat_id)
+def show_category(request, cat_slug):
+    category = get_object_or_404(Category, slug=cat_slug)
+    posts = Women.objects.filter(cat=category)
 
-    if len(posts)==0:
+    if not posts.exists():
         raise Http404()
 
     context = {'posts': posts,
                'title': 'Отображение по рубрикам',
-               'cat_selected': cat_id,
+               'cat_selected': category.slug,
                }
     return render(request, 'women/index.html', context=context)
